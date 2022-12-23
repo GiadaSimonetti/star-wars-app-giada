@@ -4,15 +4,17 @@ import { ITEM_PROP_TYPE } from "../models/character";
 const SingleCharacter = ({ character }) => {
   return (
     <div className="singleCharacter" data-testid="singleCharacter">
-      <h3>{character.name}</h3>
+      <h3 data-testid="singleCharacterTitle">{character.name}</h3>
       <b>NAME: </b>
-      <span>{character.name}</span>
+      <span data-testid="singleCharacterName">{character.name}</span>
       <div>
         <b>GENDER : </b>
-        <span>{character.gender}</span>
+        <span data-testid="singleCharacterGender">{character.gender}</span>
         <div>
           <b>HOMEWORLD: </b>
-          <span>{character.homeworld}</span>
+          <span data-testid="singleCharacterHomeworld">
+            {character.homeworld}
+          </span>
         </div>
       </div>
     </div>

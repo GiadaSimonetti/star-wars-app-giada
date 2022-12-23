@@ -2,25 +2,26 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import SingleCharacter from "./SingleCharacter";
 
+const character = { name: "R2-D2", gender: "n/a", homeworld: "Naboo" };
+
 describe("SingleCharacter component", () => {
-  afterEach(() => {
-    jest.clearAllMocks();
-  });
   it("renders name", () => {
-    const character = { name: "R2-D2", gender: "n/a" };
-
     render(<SingleCharacter character={character} />);
-
-    expect(screen.getByText("R2-D2")).toBeInTheDocument();
+    const singleCharacterName = screen.getByTestId("singleCharacterName");
+    expect(singleCharacterName).toHaveTextContent("R2-D2");
   });
 
-  it('when character clicked, call passed "onClick" function', () => {
-    const onClick = jest.fn();
-    const character = { name: "R2-D2", gender: "n/a" };
-    render(<SingleCharacter character={character} onClick={onClick} />);
+  it("renders gender", () => {
+    render(<SingleCharacter character={character} />);
+    const singleCharacterGender = screen.getByTestId("singleCharacterGender");
+    expect(singleCharacterGender).toHaveTextContent("n/a");
+  });
 
-    screen.getByText("R2-D2").click();
-
-    expect(onClick).toHaveBeenCalled();
+  it("renders home planet", () => {
+    render(<SingleCharacter character={character} />);
+    const singleCharacterHomeworld = screen.getByTestId(
+      "singleCharacterHomeworld"
+    );
+    expect(singleCharacterHomeworld).toHaveTextContent("Naboo");
   });
 });
