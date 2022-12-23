@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import axios from "axios";
-// import { getCharactersFromApi } from "./api";
-import CharactersList from "./CharactersList/CharactersList";
+import CharacterList from "./CharacterList/CharacterList";
+import CharacterCard from "./CharacterCard/CharacterCard";
 import "./App.css";
 
 export const url = "https://swapi.dev/api/people";
@@ -42,11 +42,11 @@ function App() {
     <BrowserRouter>
       <div>
         <Routes>
+          <Route path="/" element={<CharacterList peopleData={peopleData} />} />
           <Route
-            path="/"
-            element={<CharactersList peopleData={peopleData} />}
+            path="/:id"
+            element={<CharacterCard peopleData={peopleData} />}
           />
-          {/* <Route path="/:id" element={<CardPage peopleData={peopleData}/>} /> */}
         </Routes>
       </div>
     </BrowserRouter>
