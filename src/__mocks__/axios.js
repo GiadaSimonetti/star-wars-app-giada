@@ -1,9 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
 
-// export default {
-//   get: jest.fn().mockResolvedValue({ data: {} }),
-// };
-
 const mockGetResponse = [
   {
     name: "Luke Skywalker",

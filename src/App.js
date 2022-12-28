@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import axios from "axios";
-import CharacterList from "./CharacterList/CharacterList";
-import CharacterCard from "./CharacterCard/CharacterCard";
-import "./App.css";
+import CharacterList from "./Pages/CharacterList/CharacterList";
+import CharacterCard from "./Pages/CharacterCard/CharacterCard";
+import Header from "./Components/Header";
+import { AppContainer } from "./App.styles.js";
 
 export const url = "https://swapi.dev/api/people";
 
@@ -19,6 +20,7 @@ function App() {
         for (let person of peopleCopy) {
           promises.push(
             axios.get(person.homeworld).then((response) => {
+              // console.log("response.data: ", response.data);
               person.homeworld = response.data.name;
             })
           );
@@ -36,11 +38,12 @@ function App() {
     loadAllPeople();
   }, []);
 
-  console.log("peopleData", peopleData);
+  // console.log("peopleData", peopleData);
 
   return (
-    <BrowserRouter>
-      <div>
+    <Router>
+      <AppContainer className="app" data-testid="app">
+        <Header />
         <Routes>
           <Route path="/" element={<CharacterList peopleData={peopleData} />} />
           <Route
@@ -48,8 +51,8 @@ function App() {
             element={<CharacterCard peopleData={peopleData} />}
           />
         </Routes>
-      </div>
-    </BrowserRouter>
+      </AppContainer>
+    </Router>
   );
 }
 

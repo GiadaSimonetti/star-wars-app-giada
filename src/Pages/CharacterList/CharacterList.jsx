@@ -1,16 +1,18 @@
 import PropTypes from "prop-types";
-import { ITEM_PROP_TYPE } from "../models/character";
+import { ITEM_PROP_TYPE } from "../../models/character";
 import { Link } from "react-router-dom";
 import SingleCharacter from "../SingleCharacter/SingleCharacter";
+import SubTitle from "../../Components/SubTitle";
+import { MainCardBox, LoadingBox, LoadingText } from "./Styles";
 
 const CharacterList = ({ peopleData }) => {
-  console.log("peopleData: ", peopleData);
+  // console.log("peopleData: ", peopleData);
 
   return (
     <div className="characterList" data-testid="characterList">
-      <h1>All Characters</h1>
+      <SubTitle>All Characters</SubTitle>
 
-      <div>
+      <MainCardBox>
         {peopleData && peopleData.length > 0 ? (
           peopleData.map((character) => (
             <li
@@ -24,9 +26,11 @@ const CharacterList = ({ peopleData }) => {
             </li>
           ))
         ) : (
-          <p>Loading data...</p>
+          <LoadingBox>
+            <LoadingText>Loading data...</LoadingText>
+          </LoadingBox>
         )}
-      </div>
+      </MainCardBox>
     </div>
   );
 };

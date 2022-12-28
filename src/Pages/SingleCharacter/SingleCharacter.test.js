@@ -5,19 +5,25 @@ import SingleCharacter from "./SingleCharacter";
 const character = { name: "R2-D2", gender: "n/a", homeworld: "Naboo" };
 
 describe("SingleCharacter component", () => {
-  it("renders name", () => {
+  test("should render the page", () => {
+    render(<SingleCharacter character={character} />);
+    const singleCharacter = screen.getByTestId("singleCharacter");
+    expect(singleCharacter).toHaveTextContent("GENDER");
+  });
+
+  test("renders name", () => {
     render(<SingleCharacter character={character} />);
     const singleCharacterName = screen.getByTestId("singleCharacterName");
     expect(singleCharacterName).toHaveTextContent("R2-D2");
   });
 
-  it("renders gender", () => {
+  test("renders gender", () => {
     render(<SingleCharacter character={character} />);
     const singleCharacterGender = screen.getByTestId("singleCharacterGender");
     expect(singleCharacterGender).toHaveTextContent("n/a");
   });
 
-  it("renders home planet", () => {
+  test("renders home planet", () => {
     render(<SingleCharacter character={character} />);
     const singleCharacterHomeworld = screen.getByTestId(
       "singleCharacterHomeworld"
