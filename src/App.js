@@ -20,7 +20,6 @@ function App() {
         for (let person of peopleCopy) {
           promises.push(
             axios.get(person.homeworld).then((response) => {
-              // console.log("response.data: ", response.data);
               person.homeworld = response.data.name;
             })
           );
@@ -37,8 +36,6 @@ function App() {
   useEffect(() => {
     loadAllPeople();
   }, []);
-
-  // console.log("peopleData", peopleData);
 
   return (
     <Router>

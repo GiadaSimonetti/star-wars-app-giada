@@ -28,7 +28,6 @@ const CharacterCard = ({ peopleData }) => {
   const specificCard = peopleData.find(
     (person) => person.name === decodeURI(cardId)
   );
-  console.log("cardId: ", cardId);
 
   const getFilms = useCallback(async () => {
     let promises = [];
@@ -49,7 +48,6 @@ const CharacterCard = ({ peopleData }) => {
     getFilms();
   }, [peopleData, getFilms]);
 
-  console.log("specificCard: ", specificCard);
   return (
     <CharacterCardWrapper className="characterCard" data-testid="characterCard">
       {specificCard ? (

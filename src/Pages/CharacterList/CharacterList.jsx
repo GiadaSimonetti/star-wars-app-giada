@@ -6,8 +6,6 @@ import SubTitle from "../../Components/SubTitle";
 import { MainCardBox, LoadingBox, LoadingText } from "./Styles";
 
 const CharacterList = ({ peopleData }) => {
-  // console.log("peopleData: ", peopleData);
-
   return (
     <div className="characterList" data-testid="characterList">
       <SubTitle>All Characters</SubTitle>

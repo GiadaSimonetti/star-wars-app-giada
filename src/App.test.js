@@ -46,7 +46,7 @@ describe("App Component", () => {
     expect(getByText(/Loading data.../i)).toBeInTheDocument();
   });
 
-  test("axios should have been called with the right url", async () => {
+  test("axios should have been called with the right url", () => {
     mockCall();
     render(<App />);
     expect(axios.get).toHaveBeenCalledTimes(1);
@@ -62,5 +62,13 @@ describe("App Component", () => {
     expect(getByText("Luke Skywalker")).toBeInTheDocument();
     expect(getByText("C-3PO")).toBeInTheDocument();
     expect(getByText("n/a")).toBeInTheDocument();
+  });
+
+  it("should display an error message when data cannot be loaded", async () => {
+    axios.get.mockRejectedValue(new Error("error loading data"));
+    render(<App />);
+    await waitFor(() =>
+      expect(window.alert).toHaveBeenCalledWith("error loading data")
+    );
   });
 });
