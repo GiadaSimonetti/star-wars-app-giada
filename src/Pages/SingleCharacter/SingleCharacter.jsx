@@ -1,4 +1,3 @@
-import PropTypes from "prop-types";
 import { ITEM_PROP_TYPE } from "../../models/character";
 import {
   CardBox,
@@ -40,5 +39,4 @@ export default SingleCharacter;
 
 SingleCharacter.propTypes = {
   character: ITEM_PROP_TYPE,
-  onClick: PropTypes.func,
 };

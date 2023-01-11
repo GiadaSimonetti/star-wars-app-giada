@@ -33,24 +33,33 @@ const mockCall = () => {
 };
 
 describe("App Component", () => {
-  test("should render", () => {
+  test("should render", async () => {
     mockCall();
     render(<App />);
     const app = screen.getByTestId("app");
     expect(app).toHaveTextContent("Star Wars App");
+    await waitFor(() => {
+      expect(screen.getByTestId("app")).toHaveTextContent("GENDER");
+    });
   });
 
-  test("show loader when it's fetching data", () => {
+  test("show loader when it's fetching data", async () => {
     mockCall();
-    const { getByText } = render(<App />);
+    const { getByText, queryByText } = render(<App />);
     expect(getByText(/Loading data.../i)).toBeInTheDocument();
+    await waitFor(() => {
+      expect(queryByText(/Loading data.../i)).not.toBeInTheDocument();
+    });
   });
 
-  test("axios should have been called with the right url", () => {
+  test("axios should have been called with the right url", async () => {
     mockCall();
     render(<App />);
     expect(axios.get).toHaveBeenCalledTimes(1);
     expect(axios.get).toHaveBeenCalledWith(url);
+    await waitFor(() => {
+      expect(screen.getByTestId("app")).toHaveTextContent("HOMEWORLD");
+    });
   });
 
   test("should render character names when api responds", async () => {
